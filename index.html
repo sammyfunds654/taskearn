@@ -1,67 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2482183296150005"
-     crossorigin="anonymous"></script>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TaskEarn — Simple Online Tasks</title>
-<meta name="description" content="A simple task and rewards website template with spaces for legitimate advertising.">
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#f6f7fb;color:#18202a}
-header{background:#111827;color:#fff;padding:18px 6%;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:22px;font-weight:800}.nav a{color:#fff;text-decoration:none;margin-left:18px;font-size:14px}
-.hero{padding:64px 6%;background:linear-gradient(135deg,#eef2ff,#fff);text-align:center}
-.hero h1{font-size:clamp(32px,6vw,54px);margin:0 0 14px}.hero p{max-width:650px;margin:0 auto 24px;color:#5b6470;line-height:1.6}
-.btn{display:inline-block;background:#111827;color:white;padding:13px 22px;border-radius:10px;text-decoration:none;font-weight:700}
-.container{max-width:1050px;margin:auto;padding:30px 6%}
-.ad{min-height:90px;border:1px dashed #b7bdc8;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#8a919c;font-size:13px;margin:20px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.card{background:#fff;padding:22px;border-radius:15px;box-shadow:0 5px 20px rgba(20,30,50,.06)}
-.card h3{margin-top:0}.card p{color:#68717e;line-height:1.5;font-size:14px}
-.notice{background:#fff7df;border-left:4px solid #d99b00;padding:15px;border-radius:8px;color:#604a00;line-height:1.5}
-footer{background:#111827;color:#cbd5e1;text-align:center;padding:28px 6%;margin-top:30px;font-size:13px}
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TokenRewards</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2482183296150005"
-     crossorigin="anonymous"></script> 
 <body>
 <header>
-  <div class="logo">TaskEarn</div>
-  <nav class="nav"><a href="#tasks">Tasks</a><a href="#about">About</a></nav>
+  <div class="brand">TokenRewards</div>
+  <button id="logoutBtn" class="secondary hidden">Log out</button>
 </header>
 
-<section class="hero">
-  <h1>Find simple ways to earn online.</h1>
-  <p>Explore legitimate online tasks, learning opportunities and useful resources — all in one simple place.</p>
-  <a class="btn" href="#tasks">Explore Tasks</a>
-</section>
-
-<main class="container">
-  <div class="ad">ADVERTISEMENT — Connect your approved ad-network code here</div>
-
-  <div class="notice">
-    <strong>Important:</strong> This site does not promise guaranteed earnings. Never pay someone to unlock advertising earnings, and never ask visitors to click ads artificially.
+<main>
+<section id="authView" class="card">
+  <h1>Earn. Complete tasks. Withdraw.</h1>
+  <p class="muted">Create an account to start earning rewards.</p>
+  <div class="tabs">
+    <button id="loginTab" class="active">Log in</button>
+    <button id="signupTab">Sign up</button>
   </div>
 
-  <section id="tasks">
-    <h2>Ways to Earn</h2>
-    <div class="grid">
-      <div class="card"><h3>Microtasks</h3><p>Find legitimate platforms offering surveys, data tasks and other small online jobs.</p></div>
-      <div class="card"><h3>Freelancing</h3><p>Use your skills in design, writing, virtual assistance and other services to find clients.</p></div>
-      <div class="card"><h3>Learn & Grow</h3><p>Build digital skills that can help you qualify for better-paying online work.</p></div>
+  <form id="authForm">
+    <label>Email</label>
+    <input id="email" type="email" required placeholder="you@example.com">
+    <label>Password</label>
+    <input id="password" type="password" minlength="6" required placeholder="At least 6 characters">
+    <div id="phoneWrap" class="hidden">
+      <label>Phone number</label>
+      <input id="phone" type="tel" placeholder="+234...">
     </div>
-  </section>
+    <button type="submit" class="primary" id="authSubmit">Log in</button>
+    <p id="authMsg" class="message"></p>
+  </form>
+  <p class="tiny">Authentication is powered by Supabase after you add your project settings in <code>app.js</code>.</p>
+</section>
 
-  <div class="ad">ADVERTISEMENT — Your approved ad unit goes here</div>
+<section id="appView" class="hidden">
+  <div class="welcome card">
+    <div><span class="muted">Welcome</span><h2 id="userEmail">User</h2></div>
+    <div class="balance"><span>Balance</span><strong id="balance">0</strong> TOK</div>
+  </div>
 
-  <section id="about">
-    <h2>About TaskEarn</h2>
-    <p>TaskEarn is a simple information website designed to help visitors discover legitimate online earning opportunities.</p>
-  </section>
+  <div class="grid">
+    <div class="card">
+      <h3>Available tasks</h3>
+      <div id="tasks"></div>
+    </div>
+    <div class="card">
+      <h3>Withdraw</h3>
+      <p id="withdrawStatus" class="muted">Complete all required tasks before withdrawal becomes available.</p>
+      <input id="wallet" placeholder="Wallet address">
+      <button id="withdrawBtn" class="primary" disabled>Withdraw</button>
+      <p id="withdrawMsg" class="message"></p>
+    </div>
+  </div>
+</section>
 </main>
-
-<footer>© 2026 TaskEarn · Built for legitimate advertising and useful content.</footer>
+<script src="app.js"></script>
 </body>
 </html>
-
